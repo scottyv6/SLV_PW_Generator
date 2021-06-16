@@ -1,10 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lower = "abcdefghijklmnopqrstuvwxyz";
-var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numeric = "0123456789";
-var special = "@%+\\/'!#$^?:,(){}[]~-_.";
-var pwLength = 0;
+
 
 /*
 var strlen = special.length;
@@ -20,25 +16,39 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-  
 }
 
 function generatePassword() {
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numeric = "0123456789";
+  var special = "@%+\\/'!#$^?:,(){}[]~-_.";
+  var pwLength;
+  var isLower;
+  var isUpper;
+  var isNumeric;
+  var isSpecial;
+  var charSetString = "";
+  var index;
+	var pw = "";
+  
   pwLength = getPWLength();
 
+  // determines which character sets are going to be used
   do {
-    var isLower = isCharsetUsed("lowercase letters");
-    var isUpper = isCharsetUsed("uppercase letters");
-    var isNumeric = isCharsetUsed("numbers");
-    var isSpecial = isCharsetUsed("special characters");
+    isLower = isCharsetUsed("lowercase letters");
+    isUpper = isCharsetUsed("uppercase letters");
+    isNumeric = isCharsetUsed("numbers");
+    isSpecial = isCharsetUsed("special characters");
 
+    // reprompts user for character sets if none were selected
     if (!(isLower || isUpper || isNumeric || isSpecial)) {
       window.alert("You must choose at least 1 set of characters!")
     }
   } 
   while (!(isLower || isUpper || isNumeric || isSpecial));
-  
-  var charSetString = "";
+
+  // assembles the character set to generate the password
   if (isLower){
     charSetString = charSetString + lower;
   }
@@ -52,23 +62,12 @@ function generatePassword() {
     charSetString = charSetString + special;
   }
 
-  var index ;
-	var pw = "";
-
+  // generates the password with  password length and completed character set
   for (var i= 0; i < pwLength; i++){
     index = Math.floor(Math.random() * charSetString.length);
     pw = pw + charSetString.charAt(index);
-
   }
 
-  //window.alert("The charset string is " + charSetString);
-
-  /* testing
-  window.alert("lower is " + isLower);
-  window.alert("upper is " + isUpper);
-  window.alert("numeric is " + isNumeric);
-  window.alert("special is " + isSpecial);
-  */
   return(pw);
 }
 
@@ -90,8 +89,7 @@ function getPWLength() {
       window.alert("You must enter a number between 8 and 128, inclusive. ");
     }
     
-    //window.alert("length is " + pwLength);
-    //make sure pwLength is an integer
+  //make sure pwLength is an integer
   } while (pwLength <8 || pwLength >128);
   pwLength = parseInt(pwLength);
   return (pwLength);
