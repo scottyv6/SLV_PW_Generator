@@ -38,6 +38,30 @@ function generatePassword() {
   } 
   while (!(isLower || isUpper || isNumeric || isSpecial));
   
+  var charSetString = "";
+  if (isLower){
+    charSetString = charSetString + lower;
+  }
+  if (isUpper){
+    charSetString = charSetString + upper;
+  }
+  if (isNumeric){
+    charSetString = charSetString + numeric;
+  }
+  if (isSpecial){
+    charSetString = charSetString + special;
+  }
+
+  var index ;
+	var pw = "";
+
+  for (var i= 0; i < pwLength; i++){
+    index = Math.floor(Math.random() * charSetString.length);
+    pw = pw + charSetString.charAt(index);
+
+  }
+
+  //window.alert("The charset string is " + charSetString);
 
   /* testing
   window.alert("lower is " + isLower);
@@ -45,7 +69,7 @@ function generatePassword() {
   window.alert("numeric is " + isNumeric);
   window.alert("special is " + isSpecial);
   */
-  return("12345678");
+  return(pw);
 }
 
 /* This function prompts a user for the length of their password.
