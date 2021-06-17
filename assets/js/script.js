@@ -1,15 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
-/*
-var strlen = special.length;
-window.alert(strlen);
-for (i=0;i<strlen;i++){
-  console.log(special.charAt(i));
-}
-*/
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -31,9 +22,7 @@ function generatePassword() {
   var charSetString = "";
   var index;
 	var pw = "";
-  
-  pwLength = getPWLength();
-
+ 
   // determines which character sets are going to be used
   do {
     isLower = isCharsetUsed("lowercase letters");
@@ -62,7 +51,9 @@ function generatePassword() {
     charSetString = charSetString + special;
   }
 
-  // generates the password with  password length and completed character set
+  pwLength = getPWLength();
+
+  // generates the password with password length and completed character set
   for (var i= 0; i < pwLength; i++){
     index = Math.floor(Math.random() * charSetString.length);
     pw = pw + charSetString.charAt(index);
